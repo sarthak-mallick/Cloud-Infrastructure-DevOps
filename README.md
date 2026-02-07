@@ -62,6 +62,19 @@ graph TD
     Packer -- "Bake Image" --> AMI
     AMI -- "Rolling Deployment" --> EC2_1
     AMI -- "Rolling Deployment" --> EC2_2
+
+    %% Styling
+    classDef compute fill:#E1F5FE,stroke:#01579B,stroke-width:2px;
+    classDef data fill:#E8F5E9,stroke:#1B5E20,stroke-width:2px;
+    classDef network fill:#FFF3E0,stroke:#E65100,stroke-width:2px;
+    classDef cicd fill:#F3E5F5,stroke:#4A148C,stroke-width:2px;
+    classDef external fill:#FAFAFA,stroke:#212121,stroke-width:2px;
+
+    class EC2_1,EC2_2 compute;
+    class RDS,S3 data;
+    class ALB,R53,IGW network;
+    class GHA,Packer,AMI,CW,StatsD cicd;
+    class User external;
 ```
 
 
