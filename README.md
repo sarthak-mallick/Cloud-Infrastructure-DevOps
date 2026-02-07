@@ -14,19 +14,19 @@ A scalable, secure, and high-performance REST API for file management, built wit
 
 ```mermaid
 graph TD
-    subgraph External ["External Access"]
+    subgraph External["External Access"]
         User["User"]
         R53["Route 53 DNS"]
         IGW["Internet Gateway"]
     end
 
-    subgraph VPC ["VPC (Virtual Private Cloud)"]
-        subgraph Public ["Public Subnets"]
+    subgraph VPC["VPC (Virtual Private Cloud)"]
+        subgraph Public["Public Subnets"]
             ALB["Application Load Balancer<br/>(HTTPS/SSL/TLS)"]
         end
 
-        subgraph Private ["Private Subnets"]
-            subgraph ASG ["Compute Layer (Auto Scaling)"]
+        subgraph Private["Private Subnets"]
+            subgraph ASG["Compute Layer (Auto Scaling)"]
                 EC2_1["EC2 Instance<br/>(Node.js App)"]
                 EC2_2["EC2 Instance<br/>(Node.js App)"]
             end
@@ -37,7 +37,7 @@ graph TD
         S3["S3 Bucket<br/>(Object Storage<br/>Encryption at Rest)"]
     end
 
-    subgraph Management ["CI/CD & Observability"]
+    subgraph Management["CI/CD & Observability"]
         GHA["GitHub Actions<br/>(CI/CD Pipeline)"]
         Packer["Packer"]
         AMI["AMI Registry"]
@@ -46,30 +46,30 @@ graph TD
     end
 
     %% Network Flow
-    User -->|HTTPS (Custom Domain)| R53
-    R53 -->|Alias Record| ALB
-    ALB -->|Traffic Distribution| EC2_1
-    ALB -->|Traffic Distribution| EC2_2
+    User -- "HTTPS (Custom Domain)" --> R53
+    R53 -- "Alias Record" --> ALB
+    ALB -- "Traffic Distribution" --> EC2_1
+    ALB -- "Traffic Distribution" --> EC2_2
     
     %% Application Flow
-    EC2_1 -->|SQL/Data| RDS
-    EC2_2 -->|SQL/Data| RDS
-    EC2_1 -->|Object Storage| S3
-    EC2_2 -->|Object Storage| S3
+    EC2_1 -- "SQL/Data" --> RDS
+    EC2_2 -- "SQL/Data" --> RDS
+    EC2_1 -- "Object Storage" --> S3
+    EC2_2 -- "Object Storage" --> S3
 
     %% Monitoring
-    EC2_1 -.->|Metrics (StatsD)| StatsD
-    EC2_2 -.->|Metrics (StatsD)| StatsD
-    StatsD -.->|Aggregated Metrics| CW
-    EC2_1 -.->|Logs (CloudWatch Agent)| CW
-    EC2_2 -.->|Logs (CloudWatch Agent)| CW
+    EC2_1 -. "Metrics (StatsD)" .-> StatsD
+    EC2_2 -. "Metrics (StatsD)" .-> StatsD
+    StatsD -. "Aggregated Metrics" .-> CW
+    EC2_1 -. "Logs (CloudWatch Agent)" .-> CW
+    EC2_2 -. "Logs (CloudWatch Agent)" .-> CW
 
     %% CI/CD Flow
-    GHA -->|Build & Test| Packer
-    Packer -->|Bake Image| AMI
-    AMI -->|Rolling Deployment| EC2_1
-    AMI -->|Rolling Deployment| EC2_2
-```
+    GHA -- "Build & Test" --> Packer
+    Packer -- "Bake Image" --> AMI
+    AMI -- "Rolling Deployment" --> EC2_1
+    AMI -- "Rolling Deployment" --> EC2_2
+
 
 ## API Endpoints
 
