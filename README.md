@@ -1,8 +1,5 @@
 # Cloud-Infrastructure-DevOps
 
-## Project Overview
-A scalable, secure, and high-performance REST API for file management, built with Node.js and deployed on AWS. This project demonstrates comprehensive cloud infrastructure automation using Terraform, custom AMI generation with Packer, and a robust CI/CD pipeline via GitHub Actions.
-
 ## Architecture
 
 ```mermaid
