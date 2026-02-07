@@ -3,13 +3,6 @@
 ## Project Overview
 A scalable, secure, and high-performance REST API for file management, built with Node.js and deployed on AWS. This project demonstrates comprehensive cloud infrastructure automation using Terraform, custom AMI generation with Packer, and a robust CI/CD pipeline via GitHub Actions.
 
-## Tech Stack
-- **Backend**: Node.js, Express, Sequelize ORM
-- **Database**: MySQL (RDS)
-- **Infrastructure**: Terraform, AWS (VPC, EC2, S3, Route53, CloudWatch)
-- **CI/CD**: GitHub Actions, Packer
-- **Security**: IAM Roles, Security Groups, SSL/TLS, Encryption at Rest
-
 ## Architecture
 
 ```mermaid
@@ -69,6 +62,16 @@ graph TD
     Packer -- "Bake Image" --> AMI
     AMI -- "Rolling Deployment" --> EC2_1
     AMI -- "Rolling Deployment" --> EC2_2
+```
+
+
+## Tech Stack
+- **Backend**: Node.js, Express, Sequelize ORM
+- **Database**: MySQL (RDS)
+- **Infrastructure**: Terraform, AWS (VPC, EC2, S3, Route53, CloudWatch)
+- **CI/CD**: GitHub Actions, Packer
+- **Security**: IAM Roles, Security Groups, SSL/TLS, Encryption at Rest
+
 
 
 ## API Endpoints
