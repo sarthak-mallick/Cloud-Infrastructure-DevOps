@@ -1,0 +1,6 @@
+[submodule "webapp"]
+	path = webapp
+	url = git@github.com:sarthak-mallick/webapp.git
+[submodule "tf-aws-infra"]
+	path = tf-aws-infra
+	url = git@github.com:sarthak-mallick/tf-aws-infra.git
